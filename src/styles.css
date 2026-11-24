@@ -1,0 +1,323 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The design lives in this file: oklch color tokens on the shadcn variables
+ * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
+ * new tokens as needed, font tokens, and custom styles and animations.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* site-import tokens: begin (generated; re-import replaces this block) */
+/* Imported clone roles use prefixed Tailwind utilities
+   (bg-site-import-primary, text-site-import-foreground, …); edit the
+   --site-import-* variables to restyle the clone. Unprefixed roles theme new UI. */
+:root {
+  --background: oklch(0.95815 0 0);
+  --site-import-background: oklch(0.95815 0 0);
+  --foreground: oklch(0 0 0);
+  --site-import-foreground: oklch(0 0 0);
+  --primary: oklch(0.59666 0.12047 250.22);
+  --site-import-primary: oklch(0.59666 0.12047 250.22);
+  --primary-foreground: oklch(0.985 0 0);
+  --site-import-primary-foreground: oklch(0.985 0 0);
+}
+/* Design tokens captured from the imported site, registered as Tailwind
+   utilities (bg-<name>, text-<name>, font-<name>). var() values live in
+   the imported stylesheet's :root. */
+@theme inline {
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-site-import-background: var(--site-import-background);
+  --color-site-import-foreground: var(--site-import-foreground);
+  --color-site-import-primary: var(--site-import-primary);
+  --color-site-import-primary-foreground: var(--site-import-primary-foreground);
+}
+/* site-import tokens: end */
+
+/* Voxel learning game tokens (route /juego) */
+:root {
+  --game-panel: oklch(0.32 0.03 60 / 0.94);
+  --game-panel-edge: oklch(0.18 0.02 60);
+  --game-panel-light: oklch(0.48 0.04 60);
+  --game-ink: oklch(0.96 0.02 90);
+  --game-ink-dim: oklch(0.8 0.03 90);
+  --game-accent: oklch(0.82 0.16 85);
+  --game-accent-ink: oklch(0.25 0.05 60);
+  --game-success: oklch(0.72 0.17 145);
+  --game-danger: oklch(0.65 0.2 28);
+  --game-code: oklch(0.2 0.02 250);
+  --game-code-ink: oklch(0.9 0.08 150);
+  --game-btn: oklch(0.55 0.02 250);
+  --game-btn-hover: oklch(0.62 0.05 150);
+}
+@theme inline {
+  --color-game-panel: var(--game-panel);
+  --color-game-panel-edge: var(--game-panel-edge);
+  --color-game-panel-light: var(--game-panel-light);
+  --color-game-ink: var(--game-ink);
+  --color-game-ink-dim: var(--game-ink-dim);
+  --color-game-accent: var(--game-accent);
+  --color-game-accent-ink: var(--game-accent-ink);
+  --color-game-success: var(--game-success);
+  --color-game-danger: var(--game-danger);
+  --color-game-code: var(--game-code);
+  --color-game-code-ink: var(--game-code-ink);
+  --color-game-btn: var(--game-btn);
+  --color-game-btn-hover: var(--game-btn-hover);
+  --font-pixel: "Press Start 2P", monospace;
+  --font-pixel-body: "Pixelify Sans", monospace;
+  --font-code: "JetBrains Mono", monospace;
+}
+@utility game-panel {
+  background: var(--game-panel);
+  color: var(--game-ink);
+  border: 4px solid var(--game-panel-edge);
+  box-shadow: inset 3px 3px 0 var(--game-panel-light), inset -3px -3px 0 var(--game-panel-edge), 0 6px 0 oklch(0 0 0 / 0.35);
+  image-rendering: pixelated;
+}
+@utility game-btn {
+  background: var(--game-btn);
+  color: var(--game-ink);
+  border: 3px solid var(--game-panel-edge);
+  box-shadow: inset 2px 2px 0 oklch(1 0 0 / 0.3), inset -2px -3px 0 oklch(0 0 0 / 0.35);
+  font-family: var(--font-pixel-body);
+  transition: background 0.1s, transform 0.05s;
+  &:hover { background: var(--game-btn-hover); }
+  &:active { transform: translateY(2px); }
+}
+@utility game-btn-accent {
+  background: var(--game-accent);
+  color: var(--game-accent-ink);
+  &:hover { background: oklch(0.88 0.16 90); }
+}
+
+/* Title + finish screens */
+:root {
+  --confetti-1: oklch(0.82 0.16 85);
+  --confetti-2: oklch(0.72 0.17 145);
+  --confetti-3: oklch(0.7 0.15 240);
+  --confetti-4: oklch(0.68 0.2 25);
+  --confetti-5: oklch(0.75 0.15 320);
+  --title-shade: oklch(0.22 0.03 250 / 0.45);
+  --finish-shade: oklch(0.2 0.04 250 / 0.82);
+  --stone: oklch(0.55 0.01 250);
+  --stone-hover: oklch(0.6 0.08 260);
+}
+@utility stone-btn {
+  background: var(--stone); color: var(--game-ink);
+  border: 3px solid oklch(0 0 0);
+  box-shadow: inset 3px 3px 0 oklch(1 0 0 / 0.35), inset -3px -4px 0 oklch(0 0 0 / 0.4);
+  text-shadow: 2px 2px 0 oklch(0.25 0 0);
+  font-family: var(--font-pixel-body);
+  &:hover { background: var(--stone-hover); }
+  &:active { transform: translateY(2px); }
+}
+.title-screen { background: radial-gradient(ellipse at center, transparent 30%, var(--title-shade)); transition: opacity .45s; }
+.title-leave { opacity: 0; }
+.title-logo { color: var(--game-ink); text-shadow: 4px 4px 0 var(--game-btn), 8px 8px 0 var(--game-panel-edge); }
+.splash-text { color: oklch(0.9 0.18 100); text-shadow: 2px 2px 0 oklch(0.3 0.06 90); transform: rotate(-18deg); animation: splash-pulse .5s ease-in-out infinite alternate; white-space: nowrap; }
+@keyframes splash-pulse { from { transform: rotate(-18deg) scale(.92); } to { transform: rotate(-18deg) scale(1.08); } }
+.finish-screen { background: var(--finish-shade); animation: fade-in .3s; }
+@keyframes fade-in { from { opacity: 0; } }
+.confetti { position: absolute; top: -20px; animation: confetti-fall linear infinite; }
+@keyframes confetti-fall { to { transform: translateY(110vh) rotate(720deg); } }
+.star-burst { position: absolute; left: 50%; top: 40%; width: 20px; height: 20px; border-radius: 50%; translate: -50% -50%;
+  box-shadow: 0 0 0 0 var(--confetti-1); animation: burst 1.2s ease-out forwards; }
+@keyframes burst { to { box-shadow: 0 0 0 80vmax transparent; } }
+.pop-in { animation: pop-in .5s cubic-bezier(.3,1.6,.6,1) both; }
+@keyframes pop-in { from { opacity: 0; transform: scale(.6); } }
+.trophy-bounce { animation: trophy 1s ease-in-out infinite alternate; text-shadow: 4px 4px 0 var(--game-panel-edge); }
+@keyframes trophy { from { transform: translateY(0) rotate(-6deg); } to { transform: translateY(-14px) rotate(6deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .confetti, .star-burst { display: none; }
+  .splash-text, .trophy-bounce, .pop-in, .finish-screen { animation: none; }
+}
+
+.death-screen {
+  background: color-mix(in oklab, var(--game-danger, oklch(0.55 0.2 25)) 55%, transparent);
+  animation: death-fade 0.8s ease-out both;
+}
+.death-title {
+  color: var(--game-ink, white);
+  text-shadow: 4px 4px 0 color-mix(in oklab, black 60%, transparent);
+  animation: death-drop 0.6s ease-out both;
+}
+@keyframes death-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes death-drop { from { transform: translateY(-30px) scale(1.2); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.hurt-flash {
+  box-shadow: inset 0 0 160px 60px color-mix(in oklab, var(--game-danger) 70%, transparent);
+  animation: hurt-flash 0.9s ease-out forwards;
+}
+.hurt-heart { animation: hurt-heart 0.9s ease-out forwards; text-shadow: 4px 4px 0 color-mix(in oklab, black 60%, transparent); }
+.heart-lost { animation: heart-lost 0.8s ease-out; }
+.heart-shake { animation: heart-shake 0.4s ease-in-out; }
+@keyframes hurt-flash { 0% { opacity: 1; background: color-mix(in oklab, var(--game-danger) 30%, transparent); } 100% { opacity: 0; background: transparent; } }
+@keyframes hurt-heart { 0% { transform: scale(0.6); opacity: 0; } 25% { transform: scale(1.4); opacity: 1; } 60% { transform: scale(1) rotate(-8deg); opacity: 1; filter: grayscale(0); } 100% { transform: translateY(60px) scale(0.6) rotate(20deg); opacity: 0; filter: grayscale(1); } }
+@keyframes heart-lost { 0% { transform: scale(1.8); color: var(--game-danger); opacity: 1; } 50% { transform: scale(1.2) rotate(-15deg); } 100% { transform: none; } }
+@keyframes heart-shake { 0%,100% { transform: none; } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+
+/* Finish: one stat at a time + loot chest */
+.stat-slide { animation: stat-slide .45s cubic-bezier(.3,1.4,.6,1) both; }
+@keyframes stat-slide { from { opacity: 0; transform: translateX(60px) scale(.9); } }
+.chest { position: relative; width: 120px; height: 104px; image-rendering: pixelated; }
+.chest-body { position: absolute; inset: 40px 0 0; background: var(--confetti-4); filter: saturate(.4) brightness(.7); border: 4px solid var(--game-ink-dim); }
+.chest-lid { position: absolute; inset: 0 0 60px; background: var(--confetti-4); filter: saturate(.4) brightness(.85); border: 4px solid var(--game-ink-dim); transform-origin: top; }
+.chest-lock { position: absolute; left: 50%; top: 32px; width: 18px; height: 22px; margin-left: -9px; background: var(--confetti-1); border: 3px solid var(--game-ink-dim); }
+.chest-ready { animation: chest-shake .5s ease-in-out infinite; cursor: pointer; }
+@keyframes chest-shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-5deg) scale(1.05); } 75% { transform: rotate(5deg) scale(1.05); } }
+.loot-pop { animation: loot-pop .8s cubic-bezier(.3,1.8,.5,1) both, trophy 1s ease-in-out .8s infinite alternate; }
+@keyframes loot-pop { from { opacity: 0; transform: translateY(60px) scale(.2) rotate(-90deg); } }
+@media (prefers-reduced-motion: reduce) { .stat-slide, .chest-ready, .loot-pop { animation: none; } }
+.streak-fire { animation: streak-fire .9s cubic-bezier(.3,1.8,.5,1) both, streak-flicker .6s ease-in-out .9s infinite alternate; }
+@keyframes streak-fire { from { opacity: 0; transform: scale(.2) translateY(40px); } }
+@keyframes streak-flicker { from { transform: scale(1) rotate(-4deg); } to { transform: scale(1.1) rotate(4deg); } }
+.streak-num { animation: pop-in .5s cubic-bezier(.3,1.6,.6,1) .5s both; }
+.streak-day { animation: pop-in .5s cubic-bezier(.3,1.6,.6,1) .9s both; }
+@media (prefers-reduced-motion: reduce) { .streak-fire, .streak-num, .streak-day { animation: none; } }
